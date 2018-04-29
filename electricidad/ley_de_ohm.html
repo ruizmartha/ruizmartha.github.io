@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="es">
+<head>
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<link rel="stylesheet" type="text/css" href="nav.css" />
+<meta http-equiv="content-type" content="text/html;  charset=utf-8" />
+<title>Ley de Ohm | CONTENIDO </title>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<link rel="license" type="text/html" href="http://www.gnu.org/copyleft/fdl.html" />
+<meta name="generator" content="eXeLearning 2.1.3 - exelearning.net" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript">$exe_i18n={previous:"Anterior",next:"Siguiente",show:"Mostrar",hide:"Ocultar",showFeedback:"Mostrar retroalimentación",hideFeedback:"Ocultar retroalimentación",correct:"Correcto",incorrect:"Incorrecto",menu:"Menú",download:"Descargar",print:"Imprimir"}</script>
+<script type="text/javascript" src="common.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body class="exe-web-site" id="exe-node-12"><script type="text/javascript">document.body.className+=" js"</script>
+<div id="content">
+<p id="skipNav"><a href="#main" class="sr-av">Saltar la navegación</a></p>
+<header id="header" ><div id="headerContent">CONTENIDO</div></header>
+<nav id="siteNav">
+<ul>
+   <li><a href="index.html" class="daddy main-node">Detalles del Módulo</a></li>
+   <li class="current-page-parent"><a href="conceptos_bsicos_del_estudio_de_la_electricidad.html" class="current-page-parent daddy">Conceptos básicos del estudio de la electricidad</a>
+   <ul>
+      <li><a href="historia_de_la_electricidad.html" class="no-ch">Historia de la electricidad</a></li>
+      <li><a href="conceptos_bsicos.html" class="no-ch">Conceptos básicos</a></li>
+      <li><a href="magnitudes_fundamentales.html" class="no-ch">Magnitudes fundamentales</a></li>
+      <li id="active"><a href="ley_de_ohm.html" class="active no-ch">Ley de Ohm</a></li>
+   </ul>
+   </li>
+   <li><a href="actividades_formativas.html" class="no-ch">Actividades formativas</a></li>
+   <li><a href="actividad_sumativa.html" class="no-ch">Actividad sumativa</a></li>
+   <li><a href="enlaces_y_fuentes_de_inters.html" class="no-ch">Enlaces y fuentes de interés</a></li>
+</ul>
+</nav>
+<div id='topPagination'>
+<nav class="pagination noprt">
+<a href="magnitudes_fundamentales.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="actividades_formativas.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+<div id="main-wrapper">
+<section id="main">
+<header id="nodeDecoration"><h1 id="nodeTitle">Ley de Ohm</h1></header>
+<article class="iDevice_wrapper FreeTextIdevice" id="id6">
+<div class="iDevice emphasis0">
+<div id="ta6_85" class="block iDevice_content">
+<p>
+<script text="" javascript="">// <![CDATA[
+var arrayResStandard1 = new Array();
+var arrayResStandard2 = new Array();
+var Rin = 0;
+var Rout = 0;
+var R1out = 0;  
+var R2out = 0;	
+
+// -------------------------------------------------------------------------------
+// Clear Data
+// -------------------------------------------------------------------------------
+function ClearData() {
+		document.getElementById("txtTension").value = "";
+		document.getElementById("txtCorriente").value = "";
+		document.getElementById("txtResistencia").value = "";
+		document.getElementById("txtPotencia").value = "";
+		document.getElementById("mensaje").style.color = 'black';
+		document.getElementById("cmbTension").selectedIndex = 0;
+		document.getElementById("cmbCorriente").selectedIndex = 0;
+		document.getElementById("cmbResistencia").selectedIndex = 0;
+		document.getElementById("cmbPotencia").selectedIndex = 0;
+		document.getElementById("mensaje").innerHTML = "<i>Introducir solo dos parámetros para efectuar el cálculo.</i>";
+}
+// -------------------------------------------------------------------------------
+// Clear Data
+// -------------------------------------------------------------------------------
+function CalcFormula() {
+
+	var tension = 0;
+	var corriente = 0;
+	var resistencia = 0;
+	var potencia = 0;
+	var param_counter = 0;
+	
+	if (document.getElementById("txtTension").value > 0) param_counter = 1;
+	if (document.getElementById("txtCorriente").value > 0) param_counter++;
+	if (document.getElementById("txtResistencia").value > 0) param_counter++;
+	if (document.getElementById("txtPotencia").value > 0) param_counter++;
+	if (param_counter > 2 )
+		{
+			document.getElementById("mensaje").style.color = 'red';
+			document.getElementById("mensaje").innerHTML = "<i><b>Error: has introducido más de dos parámetros y el cálculo no puede ser efectuado.</b></i>";    
+			return
+		}
+	if (document.getElementById("txtTension").value > 0)
+		{
+			tension = document.getElementById("txtTension").value;
+			if (document.getElementById("cmbTension").selectedIndex == 1)tension = tension * 1000;
+			if (document.getElementById("txtCorriente").value > 0)
+				{
+				corriente = document.getElementById("txtCorriente").value;
+				if (document.getElementById("cmbCorriente").selectedIndex == 1)corriente = corriente / 1000;
+				wattFormat(corriente * tension);
+				ohmsFormat(tension / corriente);
+				
+				}
+			else if (document.getElementById("txtResistencia").value > 0)
+				{
+				resistencia = document.getElementById("txtResistencia").value;
+				if (document.getElementById("cmbResistencia").selectedIndex == 1) resistencia = resistencia * 1000;
+				else if (document.getElementById("cmbResistencia").selectedIndex == 2) resistencia = resistencia * 1000 * 1000;
+				
+				wattFormat(tension * tension / resistencia );
+				ampFormat(tension / resistencia);
+				
+				}
+			else if (document.getElementById("txtPotencia").value > 0)
+				{
+				potencia = document.getElementById("txtPotencia").value;
+				if (document.getElementById("cmbPotencia").selectedIndex == 1) potencia = potencia / 1000;
+				else if (document.getElementById("cmbPotencia").selectedIndex == 2) potencia = potencia * 1000;
+				ampFormat(potencia / tension);
+				ohmsFormat(tension * tension / potencia);				
+				
+				}
+		}
+
+	else if (document.getElementById("txtCorriente").value > 0)
+		{
+			corriente = document.getElementById("txtCorriente").value;
+			if (document.getElementById("cmbCorriente").selectedIndex == 1)corriente = corriente / 1000;
+
+			if (document.getElementById("txtResistencia").value > 0)
+				{
+				resistencia = document.getElementById("txtResistencia").value;
+				if (document.getElementById("cmbResistencia").selectedIndex == 1) resistencia = resistencia * 1000;
+				else if (document.getElementById("cmbResistencia").selectedIndex == 2) resistencia = resistencia * 1000 * 1000;				
+				voltsFormat(corriente * resistencia );
+				wattFormat(corriente * corriente * resistencia);
+				
+				}
+			else if (document.getElementById("txtPotencia").value > 0)
+				{
+				potencia = document.getElementById("txtPotencia").value;
+				if (document.getElementById("cmbPotencia").selectedIndex == 1) potencia = potencia / 1000;
+				else if (document.getElementById("cmbPotencia").selectedIndex == 2) potencia = potencia * 1000;				
+				voltsFormat(potencia / corriente);
+				ohmsFormat(potencia / corriente / corriente);				
+				
+				}
+		}
+
+	else if (document.getElementById("txtResistencia").value > 0)
+		{
+			resistencia = document.getElementById("txtResistencia").value;
+			if (document.getElementById("cmbResistencia").selectedIndex == 1) resistencia = resistencia * 1000;
+			else if (document.getElementById("cmbResistencia").selectedIndex == 1) resistencia = resistencia * 1000 * 1000;			
+
+			if (document.getElementById("txtPotencia").value > 0)
+				{
+				potencia = document.getElementById("txtPotencia").value;
+				if (document.getElementById("cmbPotencia").selectedIndex == 1) potencia = potencia / 1000;
+				else if (document.getElementById("cmbPotencia").selectedIndex == 2) potencia = potencia * 1000;				
+				voltsFormat(Math.sqrt(potencia * resistencia ));
+				ampFormat(Math.sqrt(potencia / resistencia));
+				}
+		}
+}
+
+// -------------------------------------------------------------------------------
+// Ohms Format
+// -------------------------------------------------------------------------------
+function ohmsFormat(ohmsValue){
+	if (ohmsValue >= 1e6)
+		{
+		ohmsValue /=1e6;
+		document.getElementById("txtResistencia").value = roundTo(ohmsValue, 2);
+		document.getElementById("cmbResistencia").selectedIndex = 2;	
+		}
+	else if (ohmsValue >= 1e3)
+		{
+		ohmsValue /=1e3
+		document.getElementById("txtResistencia").value = roundTo(ohmsValue, 2);
+		document.getElementById("cmbResistencia").selectedIndex = 1;	
+		}
+	else if (ohmsValue === undefined)
+		{
+		document.getElementById("txtResistencia").value = "";
+		document.getElementById("cmbResistencia").selectedIndex = 0;	
+		}
+	else 
+		{
+		document.getElementById("txtResistencia").value = roundTo(ohmsValue, 2);
+		document.getElementById("cmbResistencia").selectedIndex = 0;	
+		}
+}		
+
+// -------------------------------------------------------------------------------
+// Volts Format
+// -------------------------------------------------------------------------------
+function voltsFormat(voltsValue){
+	if (voltsValue >= 1e3)
+		{
+		voltsValue /=1e3
+		document.getElementById("txtTension").value = roundTo(voltsValue, 2);
+		document.getElementById("cmbTension").selectedIndex = 1;	
+		}
+	else if (voltsValue === undefined)
+		{
+		document.getElementById("txtTension").value = "";
+		document.getElementById("cmbTension").selectedIndex = 0;	
+		}
+	else 
+		{
+		document.getElementById("txtTension").value = roundTo(voltsValue, 2);
+		document.getElementById("cmbTension").selectedIndex = 0;	
+		}
+}		
+
+// -------------------------------------------------------------------------------
+// Current Format
+// -------------------------------------------------------------------------------
+function ampFormat(ampsValue){
+	if (ampsValue < 0.1)
+		{
+		ampsValue *=1e3
+		document.getElementById("txtCorriente").value = roundTo(ampsValue, 2);
+		document.getElementById("cmbCorriente").selectedIndex = 1;	
+		}
+	else if (ampsValue === undefined)
+		{
+		document.getElementById("txtCorriente").value = "";
+		document.getElementById("cmbCorriente").selectedIndex = 0;	
+		}
+	else 
+		{
+		document.getElementById("txtCorriente").value = roundTo(ampsValue, 2);
+		document.getElementById("cmbCorriente").selectedIndex = 0;	
+		}
+}		
+
+// -------------------------------------------------------------------------------
+// Watt Format
+// -------------------------------------------------------------------------------
+function wattFormat(wattsValue){
+	if (wattsValue >= 1e3)
+		{
+		wattsValue /=1e3
+		document.getElementById("txtPotencia").value = roundTo(wattsValue, 2);
+		document.getElementById("cmbPotencia").selectedIndex = 2;	
+		}
+	else if (wattsValue < 0.1)
+		{
+		wattsValue *=1e3
+		document.getElementById("txtPotencia").value = roundTo(wattsValue, 2);
+		document.getElementById("cmbPotencia").selectedIndex = 1;			
+		}
+	else if (wattsValue === undefined)
+		{
+		document.getElementById("txtPotencia").value = "";
+		document.getElementById("cmbPotencia").selectedIndex = 0;	
+		}
+	else 
+		{
+		document.getElementById("txtPotencia").value = roundTo(wattsValue, 2);
+		document.getElementById("cmbPotencia").selectedIndex = 0;	
+		}
+}		
+
+// -------------------------------------------------------------------------------
+// Redondea a X decimal
+// -------------------------------------------------------------------------------
+function roundTo(value, quantos_decimales)
+{
+    var i = value * Math.pow(10,quantos_decimales);
+    i = Math.round(i);
+    return i / Math.pow(10,quantos_decimales);
+}
+// ]]></script>
+</p>
+<h3><strong><span>ORIGEN DE LA LEY DE OHM</span></strong></h3>
+<p style="text-align: justify;"><span>Se originó a comienzos del siglo XlX, descubierta por el matemático y físico Georg Simon Ohm. Para ese entonces, ya se conocía la corriente eléctrica, gracias a las indagaciones de Volta Alejandro. Sin embargo, Ohm quiso ahondar sobre las investigaciones de Volta y empezó a realizar experimentos con las propiedades de la electricidad. Él utilizó partes de metal, hasta que descubrió la ley de Ohm, en honor a su nombre.</span></p>
+<p style="text-align: justify;"><span>Cabe destacar que la ley de Ohm, no funciona por sí sola. Pero este descubrimiento realizado por Ohm, fue un gran aporte a la electrónica. En la electricidad, también intervienen las leyes de Kirchhoff. No obstante, tiempo después esta ley fue perfeccionada por la teoría del científico Maxwell. Donde unificó el magnetismo con la electricidad.</span></p>
+<p style="text-align: center;"><img src="Sin_titulo.png" alt="" width="204" height="227" /></p>
+<p style="text-align: center;"><span style="font-family: arial, helvetica, sans-serif; font-size: 10pt;"><strong>Georg Simon Ohm</strong></span></p>
+<h3><strong><span>LEY DE OHM</span></strong></h3>
+<p style="text-align: justify;"><span>La ley de Ohm   dice que: "la intensidad de la corriente eléctrica que circula por un conductor eléctrico es directamente proporcional a la diferencia de potencial aplicada e inversamente proporcional a la resistencia del mismo".</span></p>
+<p style="text-align: justify;"><span>En el Sistema internacional de unidades:</span></p>
+<p style="text-align: justify;"><span>I = Intensidad en amperios (A)</span></p>
+<p style="text-align: justify;"><span>V = Diferencia de potencial en voltios (V)</span></p>
+<p style="text-align: justify;"><span>R = Resistencia en ohmios (Ω)</span></p>
+<p><span style="font-size: 16.8px;"> </span><span><img src="triangulo-de-la-ley-de-ohm.png" alt="" width="275" height="210" style="display: block; margin-left: auto; margin-right: auto;" /></span></p>
+<h3><span></span></h3>
+<h3><span id="Por_que_es_importante_la_Ley_de_Ohm">¿Por qué es importante la Ley de Ohm?</span></h3>
+<p style="text-align: justify;">Gracias a su fórmula se puede ver la relación que hay entre los parámetros más relevantes como lo son: corriente, el voltaje y la resistencia. Es importante porque independientemente de lo sencillo o amplio del circuito, se puede anticipar el comportamiento de la electricidad dentro del mismo antes de conectarlo. Una vez se tenga conocimiento de al menos dos de los parámetros mencionados anteriormente.</p>
+<p style="text-align: justify;">Por otra parte, si no se ha conectado eléctricamente el circuito, aun así se puede validar el desempeño de la corriente o del circuito, según lo indique la placa del motor o el equipo utilizado en dicho circuito.</p>
+<p style="text-align: justify;"><span></span></p>
+<div class="calculator">
+<p>Ingrese cualquiera de los dos valores y haga clic para calcular los valores restantes.</p>
+<div align="center">
+<p><strong style="font-size: 1.2em; text-align: left;"></strong></p>
+<p><strong style="font-size: 1.2em; text-align: left;">CALCULADORA DE LEY DE OHM  </strong></p>
+</div>
+</div>
+<div class="calculator"></div>
+<div class="calculator"></div>
+<div style="text-align: center;">
+<table id="OhmLawDesignTable" style="text-align: center; border: 0px;">
+<tbody>
+<tr>
+<td class="simbolo"><img src="https://www.inventable.eu/media/OhmLawCalculator/V_symbol_low.png" /></td>
+<td>Tensión<br /> <input type="text" id="txtTension" name="tension" value="" /><select id="cmbTension">
+<option>V</option>
+<option>KV</option>
+</select></td>
+</tr>
+<tr>
+<td class="simbolo"><img src="https://www.inventable.eu/media/OhmLawCalculator/I_symbol_low.png" /></td>
+<td>Corriente<br /> <input type="text" id="txtCorriente" name="corriente" value="" /><select id="cmbCorriente">
+<option>A</option>
+<option>mA</option>
+</select></td>
+</tr>
+<tr>
+<td class="simbolo"><img src="https://www.inventable.eu/media/OhmLawCalculator/R_symbol_low.png" /></td>
+<td>Resistencia<br /> <input type="text" id="txtResistencia" name="resistencia" value="" /><select id="cmbResistencia">
+<option>Ω</option>
+<option>KΩ</option>
+<option>MΩ</option>
+</select></td>
+</tr>
+<tr>
+<td class="simbolo"><img src="https://www.inventable.eu/media/OhmLawCalculator/P_symbol_low.png" /></td>
+<td>Potencia<br /> <input type="text" id="txtPotencia" name="potencia" value="" /><select id="cmbPotencia">
+<option>W</option>
+<option>mW</option>
+<option>KW</option>
+</select></td>
+</tr>
+<tr>
+<td class="simbolo"><input type="image" src="https://www.inventable.eu/media/OhmLawCalculator/clear.png" border="”0″" onclick="ClearData(); return false;" /></td>
+<td><input type="image" src="https://www.inventable.eu/media/OhmLawCalculator/calc.png" border="”0″" onclick="CalcFormula(); return false;" /></td>
+</tr>
+</tbody>
+</table>
+<p id="mensaje"><i>Introducir solo dos parámetros para efectuar el cálculo.</i></p>
+<p><strong></strong></p>
+<p><strong>Simulador de electricidad de la Ley de Ohm, variando el voltaje y la resistencia.</strong></p>
+<p><i></i></p>
+<iframe width="800" height="600" src="https://phet.colorado.edu/sims/html/ohms-law/latest/ohms-law_es.html" scrolling="no" allowfullscreen="allowfullscreen"></iframe>
+<p style="text-align: left;"></p>
+<p style="text-align: left;"></p>
+</div>
+</div>
+</div>
+</article>
+<div id="packageLicense" class="gfdl">
+<p><span>Obra publicada con</span> <a rel="license" href="http://www.gnu.org/copyleft/fdl.html">Licencia de Documentación Libre de GNU (GNU Free Documentation License)</a> <a href="fdl.html" class="local-version">(Versión local)</a></p>
+</div>
+</section>
+</div>
+<div id='bottomPagination'>
+<nav class="pagination noprt">
+<a href="magnitudes_fundamentales.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="actividades_formativas.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+</div>
+<script type="text/javascript" src="style_js.js"></script></body></html>
