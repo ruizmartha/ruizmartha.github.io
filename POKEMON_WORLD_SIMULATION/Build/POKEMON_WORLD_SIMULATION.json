@@ -1,0 +1,11 @@
+{
+"TOTAL_MEMORY": 268435456,
+"dataUrl": "POKEMON_WORLD_SIMULATION.data.unityweb",
+"asmCodeUrl": "POKEMON_WORLD_SIMULATION.asm.code.unityweb",
+"asmMemoryUrl": "POKEMON_WORLD_SIMULATION.asm.memory.unityweb",
+"asmFrameworkUrl": "POKEMON_WORLD_SIMULATION.asm.framework.unityweb",
+"graphicsAPI": ["WebGL 2.0", "WebGL 1.0"],
+"webglContextAttributes": {"preserveDrawingBuffer": false},
+"splashScreenStyle": "Dark",
+"backgroundColor": "#231F20"
+}
